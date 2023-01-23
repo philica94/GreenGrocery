@@ -2,7 +2,6 @@ import { Route, Switch } from 'react-router-dom';
 
 import GreenGrocery from './components/green-grocery/GreenGrocery';
 import LandingPage from './components/landing-page/LandingPage';
-import './App.css';
 
 function App() {
   return (

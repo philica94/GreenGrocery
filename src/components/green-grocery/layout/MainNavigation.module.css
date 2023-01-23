@@ -1,0 +1,24 @@
+.nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: sticky;
+  background-color: hsl(80, 30%, 50%);
+  padding: 5px;
+  top: 0;
+  /* height: 70px; */
+}
+
+.nav .nav-btn {
+  width: 200px;
+  padding: 5px 30px;
+  font-size: 1.85em;
+  font-weight: bold;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.nav .nav-btn:hover {
+  background-color: hsl(80, 30%, 40%);
+  border-color: hsl(80, 30%, 70%);
+}
