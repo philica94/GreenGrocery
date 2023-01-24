@@ -12,14 +12,12 @@ const Product = (props) => {
   const submitAddingHandler = () => {};
 
   return (
-    <li>
-      <div class='text-center'>
-        <Card>
-          <ProductInfo name={props.name} price={props.price} />
-          <ProductForm {...props} />
-        </Card>
-      </div>
-    </li>
+    <div className='col'>
+      <Card>
+        <ProductInfo name={props.name} price={props.price} />
+        <ProductForm id={props.id} />
+      </Card>
+    </div>
   );
 };
 

@@ -1,20 +1,43 @@
+import { useState } from 'react';
 import Button from '../../UI/Button';
 
 const ProductForm = (props) => {
+  const [checkedQuantity, setCheckedQuantity] = useState(true);
+
+  const checkedQuantityHandler = () => {
+    setCheckedQuantity(true);
+  };
+
+  const checkedUnitHandler = () => {
+    setCheckedQuantity(false);
+  };
+
   return (
     <div>
       <form>
         <div className='container'>
           <div className='row'>
             <div className='col'>
-              <input id='quantity' type='checkbox' className='form-check-input' />
-              <label htmlFor='quantity' className='form-label p-1'>
+              <input
+                id={`quantity${props.id}`}
+                type='checkbox'
+                checked={checkedQuantity}
+                onChange={checkedQuantityHandler}
+                className='form-check-input'
+              />
+              <label htmlFor={`quantity${props.id}`} className='form-label p-1'>
                 quantity
               </label>
             </div>
             <div className='col'>
-              <input id='unit' type='checkbox' className='form-check-input' />
-              <label htmlFor='unit' className='form-label p-1'>
+              <input
+                id={`unit${props.id}`}
+                type='checkbox'
+                checked={!checkedQuantity}
+                onChange={checkedUnitHandler}
+                className='form-check-input'
+              />
+              <label htmlFor={`unit${props.id}`} className='form-label p-1'>
                 unit
               </label>
             </div>
