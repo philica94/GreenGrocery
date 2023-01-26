@@ -1,17 +1,19 @@
 import { Link } from 'react-router-dom';
-import CartButton from './CartButton';
-
-import classes from './MainNavigation.module.css';
+import CartHeader from './CartHeader';
 
 const MainNavigation = () => {
   return (
-    <nav className={classes.nav}>
-      <Link to='/' className={classes['nav-btn']}>
-        Home
-      </Link>
-      <span className={classes['nav-btn']}>Shop</span>
-      <span className={classes['nav-btn']}>Contact</span>
-      <CartButton className={classes['nav-btn']} />
+    <nav className='navbar sticky-top bg-white mb-2 shadow-sm '>
+      <div className='container'>
+        <Link to='/' className='navbar-brand'>
+          Home
+        </Link>
+        <Link to='/green-grocery/shop' className='navbar-brand'>
+          Shop
+        </Link>
+        <span className='navbar-brand'>Contact</span>
+        <CartHeader className='navbar-brand btn btn-outline-primary d-flex p-sm-2 p-1' />
+      </div>
     </nav>
   );
 };

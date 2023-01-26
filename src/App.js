@@ -1,7 +1,7 @@
 import { Route, Switch } from 'react-router-dom';
 
-import GreenGrocery from './components/green-grocery/GreenGrocery';
-import LandingPage from './components/landing-page/LandingPage';
+import GreenGrocery from './pages/GreenGrocery';
+import LandingPage from './pages/LandingPage';
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
         <Route path='/' exact>
           <LandingPage />
         </Route>
-        <Route path='/green-grocery'>
+        <Route path='/green-grocery/shop'>
           <GreenGrocery />
         </Route>
         <Route path='*'>
