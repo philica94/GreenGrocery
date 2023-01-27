@@ -6,16 +6,11 @@ import ProductForm from './ProductForm';
 import ProductInfo from './ProductInfo';
 
 const Product = (props) => {
-  const [itemNumber, setItemNumber] = useState(1);
-  const inputItemRef = useRef();
-
-  const submitAddingHandler = () => {};
-
   return (
-    <div className='col'>
+    <div className='col-xxl-3 col-xl-4 col-md-6 col-12'>
       <Card>
         <ProductInfo name={props.name} price={props.price} />
-        <ProductForm id={props.id} />
+        <ProductForm id={props.id} name={props.name} price={props.price} />
       </Card>
     </div>
   );
