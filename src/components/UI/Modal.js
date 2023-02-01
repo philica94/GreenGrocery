@@ -1,4 +1,5 @@
 import ReactDOM from 'react-dom';
+import Button from './Button';
 
 const Modal = ({ children, show, onClose, header }) => {
   const handleModalClick = (e) => {
@@ -15,10 +16,13 @@ const Modal = ({ children, show, onClose, header }) => {
           <div className='modal-dialog'>
             <div className='modal-content'>
               <div className='modal-header'>
-                <h3>{header}</h3>
+                {header}
                 <button className='btn-close' onClick={onClose}></button>
               </div>
               <div className='modal-body'>{children}</div>
+              <div className='modal-footer'>
+                <Button />
+              </div>
             </div>
           </div>
         </div>
