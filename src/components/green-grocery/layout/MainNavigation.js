@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Modal from '../../UI/Modal';
+import Cart from '../cart/Cart';
 import CartHeader from './CartHeader';
 
 const MainNavigation = () => {
@@ -18,11 +19,10 @@ const MainNavigation = () => {
         <Link to='/green-grocery/shop' className='navbar-brand'>
           Shop
         </Link>
-        <Link className='navbar-brand'>Contact</Link>
-        <CartHeader className='navbar-brand btn btn-outline-primary d-flex p-sm-2 p-1' openModal={openModal} />
-        <Modal show={showModal} onClose={closeModal} header={<span>Shopping Cart</span>}>
-          Products...
-        </Modal>
+        <Link to='/contact' className='navbar-brand'>
+          Contact
+        </Link>
+        <Cart openModal={openModal} showModal={showModal} closeModal={closeModal} />
       </div>
     </nav>
   );
