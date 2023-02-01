@@ -1,4 +1,4 @@
-import AboutMe from './AboutMe';
+import AboutMe from '../components/landing-page/AboutMe';
 
 const LandingPage = () => {
   return <AboutMe />;

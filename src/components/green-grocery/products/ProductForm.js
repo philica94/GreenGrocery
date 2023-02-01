@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useRef, useState } from 'react';
 import Button from '../../UI/Button';
-import { cartActions } from '../../../store';
+import { cartActions } from '../../../store/index';
 
 const ProductForm = ({ id, name, price }) => {
   const dispatch = useDispatch();
@@ -20,11 +20,8 @@ const ProductForm = ({ id, name, price }) => {
     event.preventDefault();
 
     const enteredAmountNumber = Number(amountInputItemRef.current.value);
-    console.log(event);
-    console.log(enteredAmountNumber);
 
     const item = { id, name, price, amount: enteredAmountNumber };
-    console.log(item);
     dispatch(cartActions.addCartItem(item));
   };
 

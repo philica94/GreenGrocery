@@ -19,6 +19,26 @@ export const FRUIT_PRODUCTS = [
     name: 'Kiwi',
     price: 0.5,
   },
+  {
+    id: 'f5',
+    name: 'Mango',
+    price: 2,
+  },
+  {
+    id: 'f6',
+    name: 'Pineapple',
+    price: 3,
+  },
+  {
+    id: 'f7',
+    name: 'Watermelon',
+    price: 2.5,
+  },
+  {
+    id: 'f8',
+    name: 'Raspberry 250g',
+    price: 4,
+  },
 ];
 
 export const VEGETABLE_PRODUCTS = [
