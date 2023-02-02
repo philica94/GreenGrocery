@@ -13,13 +13,22 @@ const cartSlice = createSlice({
       const existingItemCartIndex = state.items.findIndex((item) => item.id === action.payload.id);
 
       if (existingItemCartIndex !== -1) {
-        state.items[existingItemCartIndex].amount += action.payload.amount;
+        state.items[existingItemCartIndex].amount++;
       } else {
         state.items = [...state.items, action.payload];
       }
       state.totalItemsAmount += action.payload.amount;
     },
-    removeCartItem(state, action) {},
+    removeCartItem(state, action) {
+      const existingItemCartIndex = state.items.findIndex((item) => item.id === action.payload.id);
+
+      if (state.items[existingItemCartIndex].amount === 1) {
+        state.items.splice(existingItemCartIndex, 1);
+      } else {
+        state.items[existingItemCartIndex].amount--;
+      }
+      state.totalItemsAmount--;
+    },
   },
 });
 

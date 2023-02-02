@@ -6,12 +6,13 @@ import Button from '../../UI/Button';
 const CartProduct = ({ id, name, price, amount }) => {
   const dispatch = useDispatch();
 
-  const addProductHandler = () => {
+  const addOneQuantityProductHandler = () => {
     const item = { id, amount: 1 };
     dispatch(cartActions.addCartItem(item));
   };
-  const removeProductHandler = () => {
-    console.log('removed 1');
+  const removeOneQuantityProductHandler = () => {
+    const item = { id };
+    dispatch(cartActions.removeCartItem(item));
   };
 
   return (
@@ -19,9 +20,9 @@ const CartProduct = ({ id, name, price, amount }) => {
       <h4>{name}</h4>
       <h5>${(amount * price).toFixed(2)}</h5>
       <div className='input-group'>
-        <Button onClick={removeProductHandler}>-</Button>
+        <Button onClick={removeOneQuantityProductHandler}>-</Button>
         <span className='input-group-text bg-white'>{amount}</span>
-        <Button onClick={addProductHandler}>+</Button>
+        <Button onClick={addOneQuantityProductHandler}>+</Button>
       </div>
     </div>
   );
