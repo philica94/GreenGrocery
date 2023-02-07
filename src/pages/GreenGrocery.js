@@ -1,15 +1,19 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-import MainNavigation from '../components/green-grocery/homepage/layout/MainNavigation';
-import ProductList from '../components/green-grocery/homepage/products/ProductList';
+import MainNavigation from '../components/green-grocery/layout/MainNavigation';
+import Shop from '../components/green-grocery/homepage/Shop';
+import Checkout from './green-grocery/Checkout';
 
 const GreenGrocery = () => {
   return (
     <React.Fragment>
       <MainNavigation />
       <Route path='/green-grocery' exact>
-        <ProductList />
+        <Shop />
+      </Route>
+      <Route path='/green-grocery/checkout'>
+        <Checkout />
       </Route>
     </React.Fragment>
   );

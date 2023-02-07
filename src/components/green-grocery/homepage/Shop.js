@@ -1,7 +1,7 @@
-import Product from './Product';
-import { FRUIT_PRODUCTS, VEGETABLE_PRODUCTS } from '../../../../data/productsData';
+import Product from './products/Product';
+import { FRUIT_PRODUCTS, VEGETABLE_PRODUCTS } from '../../../data/productsData';
 
-const ProductList = () => {
+const Shop = () => {
   const fruitList = FRUIT_PRODUCTS.map((fruitProd) => <Product key={fruitProd.id} {...fruitProd} />);
 
   return (
@@ -11,4 +11,4 @@ const ProductList = () => {
   );
 };
 
-export default ProductList;
+export default Shop;

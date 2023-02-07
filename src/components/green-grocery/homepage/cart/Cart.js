@@ -1,13 +1,19 @@
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
 import Modal from '../../../UI/Modal';
-import CartHeader from '../layout/CartHeader';
+import CartHeader from './CartHeader';
 import CartProduct from './CartProduct';
 import { selectTotalCartItemsAmount, selectTotalCartItemsPrice } from '../../../../store';
 import { Link } from 'react-router-dom';
 
-const Cart = ({ openModal, showModal, closeModal }) => {
+const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const totalItemsPrice = useSelector(selectTotalCartItemsPrice);
+
+  const [showModal, setShowModal] = useState(false);
+
+  const openModal = () => setShowModal(true);
+  const closeModal = () => setShowModal(false);
 
   const cartList = cart.items.map((item) => <CartProduct key={item.id} {...item} />);
   const emptyCart = <h5 className='d-flex justify-content-center m-5'>Your cart is empty...</h5>;
