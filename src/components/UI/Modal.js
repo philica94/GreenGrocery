@@ -1,12 +1,20 @@
 import ReactDOM from 'react-dom';
 import Button from './Button';
 
-const Modal = ({ children, show, onClose, header }) => {
+const Modal = ({ children, show, onClose, header, footer }) => {
   const handleModalClick = (e) => {
     if (e.target === e.currentTarget) {
       onClose();
     }
   };
+
+  const footerContent = footer && (
+    <div className='modal-footer'>
+      {footer.additionalContent ? footer.additionalContent : ''}
+      <Button className='btn-secondary'>{footer.cancelButtonText}</Button>
+      <Button onClick={footer.onOkClick}>{footer.okButtonText}</Button>
+    </div>
+  );
 
   return (
     show &&
@@ -20,9 +28,7 @@ const Modal = ({ children, show, onClose, header }) => {
                 <button className='btn-close' onClick={onClose}></button>
               </div>
               <div className='modal-body'>{children}</div>
-              <div className='modal-footer'>
-                <Button />
-              </div>
+              {footerContent}
             </div>
           </div>
         </div>

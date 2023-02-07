@@ -1,6 +1,9 @@
 const Button = (props) => {
+  const type = props.type || 'button';
+  const className = props.className || 'btn-outline-primary';
+
   return (
-    <button className='btn btn-outline-primary' onClick={props.onClick}>
+    <button type={type} className={`btn ${className}`} onClick={props.onClick}>
       {props.children}
     </button>
   );
