@@ -26,7 +26,7 @@ const cartSlice = createSlice({
       const oldAmount = state.items[existingItemCartIndex]?.amount ?? 0;
       const newAmount = amount ?? oldAmount + changeAmount;
 
-      if (newAmount <= 0) {
+      if (newAmount === 0) {
         existingItemCartIndex !== -1 && state.items.splice(existingItemCartIndex, 1);
       } else if (!state.items[existingItemCartIndex]) {
         state.items.push({ ...item, amount: newAmount });
@@ -44,6 +44,11 @@ export const selectTotalCartItemsAmount = createSelector(
 
 // export const selectTotalCartItemsAmount = (passedStore) =>
 //   passedStore.cart.items.reduce((sum, { amount }) => sum + amount, 0);
+
+export const selectTotalCartItemsPrice = createSelector(
+  (state) => state.cart.items,
+  (items) => items.reduce((sum, { price, amount }) => sum + amount * price, 0)
+);
 
 const store = configureStore({
   reducer: { cart: cartSlice.reducer },
