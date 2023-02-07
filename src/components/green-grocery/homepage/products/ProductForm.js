@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useRef, useState } from 'react';
-import Button from '../../UI/Button';
-import { cartActions } from '../../../store/index';
+import Button from '../../../UI/Button';
+import { cartActions } from '../../../../store/index';
 
 const ProductForm = ({ id, name, price }) => {
   const dispatch = useDispatch();
@@ -20,9 +20,9 @@ const ProductForm = ({ id, name, price }) => {
     event.preventDefault();
 
     const enteredAmountNumber = Number(amountInputItemRef.current.value);
-
     const item = { id, name, price, amount: enteredAmountNumber };
-    dispatch(cartActions.addCartItem(item));
+
+    dispatch(cartActions.setItemQuantity({ item, changeAmount: enteredAmountNumber }));
   };
 
   return (
@@ -58,7 +58,7 @@ const ProductForm = ({ id, name, price }) => {
         </div>
         <div className='input-group'>
           <input type='number' ref={amountInputItemRef} defaultValue={1} min='1' step='1' className='form-control' />
-          <Button>Add</Button>
+          <Button type='submit'>Add</Button>
         </div>
       </form>
     </div>

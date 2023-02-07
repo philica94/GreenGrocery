@@ -12,7 +12,7 @@ const AboutMe = () => {
           Hello! My name is Sara Wieszałka and I am currently looking for a job as a Junior React Frontend Developer.
           Below you can find my recent project.
         </p>
-        <Link to='/green-grocery/shop' className='btn btn-primary btn-xl' href='#about'>
+        <Link to='/green-grocery' className='btn btn-primary btn-xl' href='#about'>
           GreenGrocery
         </Link>
       </div>

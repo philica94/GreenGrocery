@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 
-import Card from '../../UI/Card';
+import Card from '../../../UI/Card';
 import ProductForm from './ProductForm';
 
 import ProductInfo from './ProductInfo';

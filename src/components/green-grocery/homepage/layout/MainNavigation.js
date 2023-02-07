@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Modal from '../../UI/Modal';
+import Modal from '../../../UI/Modal';
 import Cart from '../cart/Cart';
 import CartHeader from './CartHeader';
 
@@ -16,7 +16,7 @@ const MainNavigation = () => {
         <Link to='/' className='navbar-brand'>
           Home
         </Link>
-        <Link to='/green-grocery/shop' className='navbar-brand'>
+        <Link to='/green-grocery' className='navbar-brand'>
           Shop
         </Link>
         <Link to='/contact' className='navbar-brand'>
