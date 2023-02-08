@@ -1,3 +1,5 @@
+import BackToShopButton from '../checkout/BackToShopButton';
+
 import { Link, Route } from 'react-router-dom';
 import Cart from '../homepage/cart/Cart';
 
@@ -11,7 +13,9 @@ const MainNavigation = () => {
         <Route path='/green-grocery' exact>
           <Cart />
         </Route>
-        <Route path='/green-grocery/checkout'>Przekazanie do mainNavigation</Route>
+        <Route path='/green-grocery/checkout'>
+          <BackToShopButton />
+        </Route>
       </div>
     </nav>
   );

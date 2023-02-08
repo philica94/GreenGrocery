@@ -1,14 +1,16 @@
+import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
+
 import Modal from '../../../UI/Modal';
 import CartHeader from './CartHeader';
 import CartProduct from './CartProduct';
 import { selectTotalCartItemsAmount, selectTotalCartItemsPrice } from '../../../../store';
-import { Link } from 'react-router-dom';
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const totalItemsPrice = useSelector(selectTotalCartItemsPrice);
+  const history = useHistory();
 
   const [showModal, setShowModal] = useState(false);
 
@@ -24,9 +26,7 @@ const Cart = () => {
     </div>
   );
 
-  const onOkClick = () => {
-    console.log('test');
-  };
+  const onOkClick = () => history.push('/green-grocery/checkout');
 
   return (
     <>
@@ -38,7 +38,7 @@ const Cart = () => {
         footer={{
           additionalContent,
           onOkClick,
-          okButtonText: <Link to='/green-grocery/checkout'>Order</Link>,
+          okButtonText: 'To checkout',
           onCancelClick: () => {},
           cancelButtonText: 'Exit',
         }}

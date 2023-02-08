@@ -1,5 +1,11 @@
+import OrderWithoutRegistrationForm from '../../components/green-grocery/checkout/OrderWithoutRegistrationForm';
+
 const Checkout = () => {
-  return <div>Checkout test 123</div>;
+  return (
+    <>
+      <OrderWithoutRegistrationForm />
+    </>
+  );
 };
 
 export default Checkout;
