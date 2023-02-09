@@ -37,6 +37,19 @@ const cartSlice = createSlice({
   },
 });
 
+const initialAuthState = {
+  isLoggedIn: false,
+};
+
+const authSlice = createSlice({
+  name: 'authentication',
+  initialState: initialAuthState,
+  reducers: {
+    login: (state) => (state.isLoggedIn = true),
+    logout: (state) => (state.isLoggedIn = false),
+  },
+});
+
 export const selectTotalCartItemsAmount = createSelector(
   (state) => state.cart.items,
   (items) => items.reduce((sum, { amount }) => sum + amount, 0)
@@ -51,8 +64,10 @@ export const selectTotalCartItemsPrice = createSelector(
 );
 
 const store = configureStore({
-  reducer: { cart: cartSlice.reducer },
+  reducer: { cart: cartSlice.reducer, auth: authSlice.reducer },
 });
 
 export const cartActions = cartSlice.actions;
+export const authActions = authSlice.actions;
+
 export default store;

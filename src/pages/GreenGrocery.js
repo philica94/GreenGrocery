@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 
 import MainNavigation from '../components/green-grocery/layout/MainNavigation';
 import Shop from '../components/green-grocery/homepage/Shop';
+import Login from '../components/green-grocery/login/Login';
 import Checkout from './green-grocery/Checkout';
 
 const GreenGrocery = () => {
@@ -11,6 +12,9 @@ const GreenGrocery = () => {
       <MainNavigation />
       <Route path='/green-grocery' exact>
         <Shop />
+      </Route>
+      <Route path='/green-grocery/login'>
+        <Login />
       </Route>
       <Route path='/green-grocery/checkout'>
         <Checkout />
