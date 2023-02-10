@@ -1,10 +1,18 @@
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { authActions } from '../../../store';
+import Button from '../../UI/Button';
 
 const LogoutButton = () => {
+  const dispatch = useDispatch();
+
+  const submitLogoutHandler = () => {
+    dispatch(authActions.logout());
+  };
+
   return (
-    <Link to='/green-grocery' className='navbar-brand'>
-      <span>Log Out</span>
-    </Link>
+    <Button type='submit' className='navbar-brand' onClick={submitLogoutHandler}>
+      Log Out
+    </Button>
   );
 };
 

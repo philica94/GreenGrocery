@@ -1,7 +1,7 @@
-const Card = (props) => {
+const Card = ({ children, ...attributes }) => {
   return (
-    <div className='card m-2' style={{ width: '20rem' }}>
-      <div className='card-body'>{props.children}</div>
+    <div className='card m-2' {...attributes}>
+      <div className='card-body'>{children}</div>
     </div>
   );
 };

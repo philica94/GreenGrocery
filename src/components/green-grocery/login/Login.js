@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { authActions } from '../../../store';
 
 import Button from '../../UI/Button';
@@ -7,9 +8,11 @@ import Input from '../../UI/Input';
 
 const Login = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
+
   const submitLoginHandler = (e) => {
-    // e.preventDefault();
-    dispatch(authActions);
+    dispatch(authActions.login());
+    history.push('/green-grocery');
   };
 
   return (
