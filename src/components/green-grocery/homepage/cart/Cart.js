@@ -5,7 +5,7 @@ import { useState } from 'react';
 import Modal from '../../../UI/Modal';
 import CartHeader from './CartHeader';
 import CartProduct from './CartProduct';
-import { selectTotalCartItemsAmount, selectTotalCartItemsPrice } from '../../../../store';
+import { selectTotalCartItemsPrice } from '../../../../store';
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
@@ -26,7 +26,10 @@ const Cart = () => {
     </div>
   );
 
-  const onOkClick = () => history.push('/green-grocery/checkout');
+  const onOkClick = () => {
+    closeModal();
+    history.push('/green-grocery/checkout');
+  };
 
   return (
     <>
