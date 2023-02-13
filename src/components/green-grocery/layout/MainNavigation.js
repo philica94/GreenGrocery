@@ -8,7 +8,6 @@ import LogoutButton from '../login/LogoutButton';
 
 const MainNavigation = () => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-  console.log(isLoggedIn);
 
   return (
     <nav className='navbar sticky-top bg-white mb-2 shadow-sm '>
