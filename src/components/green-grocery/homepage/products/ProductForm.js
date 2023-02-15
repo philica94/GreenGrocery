@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 import Button from '../../../UI/Button';
 import { cartActions } from '../../../../store/index';
 
-const ProductForm = ({ id, name, price }) => {
+const ProductForm = ({ id, name, price, image }) => {
   const dispatch = useDispatch();
   const [checkedQuantity, setCheckedQuantity] = useState(true);
 
@@ -20,7 +20,7 @@ const ProductForm = ({ id, name, price }) => {
     event.preventDefault();
 
     const enteredAmountNumber = Number(amountInputItemRef.current.value);
-    const item = { id, name, price, amount: enteredAmountNumber };
+    const item = { id, name, price, image, amount: enteredAmountNumber };
 
     dispatch(cartActions.setItemQuantity({ item, changeAmount: enteredAmountNumber }));
   };
@@ -29,8 +29,8 @@ const ProductForm = ({ id, name, price }) => {
     <div>
       <form onSubmit={submitHandler}>
         <div className='container'>
-          <div className='row'>
-            <div className='col'>
+          <div className='row mb-2'>
+            <div className='col d-flex align-items-center'>
               <input
                 id={`quantity_${id}`}
                 type='checkbox'
@@ -38,11 +38,11 @@ const ProductForm = ({ id, name, price }) => {
                 onChange={checkedQuantityHandler}
                 className='form-check-input'
               />
-              <label htmlFor={`quantity_${id}`} className='form-label p-1'>
+              <label htmlFor={`quantity_${id}`} className='form-label p-1 mb-0'>
                 quantity
               </label>
             </div>
-            <div className='col'>
+            <div className='col d-flex align-items-center'>
               <input
                 id={`unit_${id}`}
                 type='checkbox'
@@ -50,7 +50,7 @@ const ProductForm = ({ id, name, price }) => {
                 onChange={checkedUnitHandler}
                 className='form-check-input'
               />
-              <label htmlFor={`unit_${id}`} className='form-label p-1'>
+              <label htmlFor={`unit_${id}`} className='form-label p-1 mb-0'>
                 unit
               </label>
             </div>

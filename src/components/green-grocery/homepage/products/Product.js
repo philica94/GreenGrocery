@@ -5,12 +5,12 @@ import ProductForm from './ProductForm';
 
 import ProductInfo from './ProductInfo';
 
-const Product = (props) => {
+const Product = ({ id, name, price, image }) => {
   return (
     <div className='col-xxl-3 col-xl-4 col-md-6 col-12'>
       <Card>
-        <ProductInfo name={props.name} price={props.price} />
-        <ProductForm id={props.id} name={props.name} price={props.price} />
+        <ProductInfo name={name} price={price} image={image} />
+        <ProductForm id={id} name={name} price={price} image={image} />
       </Card>
     </div>
   );
