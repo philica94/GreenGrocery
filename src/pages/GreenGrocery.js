@@ -14,7 +14,7 @@ const GreenGrocery = () => {
         <Shop />
       </Route>
       <Route path='/green-grocery/login'>
-        <Login headerContent='I already have an account' />
+        <Login headerContent='Sign in' pathTo='/green-grocery' />
       </Route>
       <Route path='/green-grocery/checkout'>
         <Checkout />

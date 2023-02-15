@@ -11,7 +11,7 @@ const Checkout = () => {
   return (
     <>
       {!cartIsEmpty && <CartListSummary />}
-      {!isLoggedIn && <Login headerContent='I already have an account' />}
+      {!isLoggedIn && <Login headerContent='I already have an account' pathTo='/green-grocery/checkout' />}
       {!isLoggedIn && <OrderWithoutRegistrationForm />}
     </>
   );

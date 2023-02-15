@@ -6,29 +6,31 @@ import Button from '../../UI/Button';
 import Card from '../../UI/Card';
 import Input from '../../UI/Input';
 
-const Login = ({ headerContent }) => {
+const Login = ({ headerContent, pathTo }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
   const submitLoginHandler = (e) => {
     dispatch(authActions.login());
-    history.push('/green-grocery');
+    history.push(pathTo);
   };
 
   return (
-    <Card>
-      <h5 className='m-3'>{headerContent}</h5>
-      <hr />
-      <form>
-        <Input id='loginEmail' labelText='E-mail' type='email'></Input>
-        <Input id='loginPassword' labelText='Password' type='password'></Input>
-        <div className='d-flex justify-content-end'>
-          <Button type='submit' onClick={submitLoginHandler}>
-            Login
-          </Button>
-        </div>
-      </form>
-    </Card>
+    <div className='row justify-content-md-center'>
+      <Card additionalClasses='col-6'>
+        <h5 className='m-3'>{headerContent}</h5>
+        <hr />
+        <form>
+          <Input id='loginEmail' labelText='E-mail' type='email'></Input>
+          <Input id='loginPassword' labelText='Password' type='password'></Input>
+          <div className='d-flex justify-content-end'>
+            <Button type='submit' onClick={submitLoginHandler}>
+              Login
+            </Button>
+          </div>
+        </form>
+      </Card>
+    </div>
   );
 };
 
