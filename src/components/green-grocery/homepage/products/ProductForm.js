@@ -26,42 +26,38 @@ const ProductForm = ({ id, name, price, image }) => {
   };
 
   return (
-    <div>
-      <form onSubmit={submitHandler}>
-        <div className='container'>
-          <div className='row mb-2'>
-            <div className='col d-flex align-items-center'>
-              <input
-                id={`quantity_${id}`}
-                type='checkbox'
-                checked={checkedQuantity}
-                onChange={checkedQuantityHandler}
-                className='form-check-input'
-              />
-              <label htmlFor={`quantity_${id}`} className='form-label p-1 mb-0'>
-                quantity
-              </label>
-            </div>
-            <div className='col d-flex align-items-center'>
-              <input
-                id={`unit_${id}`}
-                type='checkbox'
-                checked={!checkedQuantity}
-                onChange={checkedUnitHandler}
-                className='form-check-input'
-              />
-              <label htmlFor={`unit_${id}`} className='form-label p-1 mb-0'>
-                unit
-              </label>
-            </div>
-          </div>
+    <form onSubmit={submitHandler}>
+      <div className='row mb-2'>
+        <div className='col d-flex align-items-center'>
+          <input
+            id={`quantity_${id}`}
+            type='checkbox'
+            checked={checkedQuantity}
+            onChange={checkedQuantityHandler}
+            className='form-check-input'
+          />
+          <label htmlFor={`quantity_${id}`} className='form-label p-1 mb-0'>
+            quantity
+          </label>
         </div>
-        <div className='input-group'>
-          <input type='number' ref={amountInputItemRef} defaultValue={1} min='1' step='1' className='form-control' />
-          <Button type='submit'>Add</Button>
+        <div className='col d-flex align-items-center'>
+          <input
+            id={`unit_${id}`}
+            type='checkbox'
+            checked={!checkedQuantity}
+            onChange={checkedUnitHandler}
+            className='form-check-input'
+          />
+          <label htmlFor={`unit_${id}`} className='form-label p-1 mb-0'>
+            unit
+          </label>
         </div>
-      </form>
-    </div>
+      </div>
+      <div className='input-group'>
+        <input type='number' ref={amountInputItemRef} defaultValue={1} min='1' step='1' className='form-control' />
+        <Button type='submit'>Add</Button>
+      </div>
+    </form>
   );
 };
 

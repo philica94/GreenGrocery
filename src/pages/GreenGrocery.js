@@ -10,15 +10,17 @@ const GreenGrocery = () => {
   return (
     <React.Fragment>
       <MainNavigation />
-      <Route path='/green-grocery' exact>
-        <Shop />
-      </Route>
-      <Route path='/green-grocery/login'>
-        <Login headerContent='Sign in' pathTo='/green-grocery' />
-      </Route>
-      <Route path='/green-grocery/checkout'>
-        <Checkout />
-      </Route>
+      <main className='container'>
+        <Route path='/green-grocery' exact>
+          <Shop />
+        </Route>
+        <Route path='/green-grocery/login'>
+          <Login headerContent='Sign in' pathTo='/green-grocery' />
+        </Route>
+        <Route path='/green-grocery/checkout'>
+          <Checkout />
+        </Route>
+      </main>
     </React.Fragment>
   );
 };
