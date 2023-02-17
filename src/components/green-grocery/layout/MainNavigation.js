@@ -1,10 +1,11 @@
-import { Link, Route, useLocation, useRouteMatch } from 'react-router-dom';
+import { Link, useLocation, useRouteMatch } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import Cart from '../homepage/cart/Cart';
 import BackToShopButton from '../checkout/BackToShopButton';
 import LoginButton from '../login/LoginButton';
 import LogoutButton from '../login/LogoutButton';
+import { BoxArrowLeft } from 'react-bootstrap-icons';
 
 const MainNavigation = () => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -15,14 +16,16 @@ const MainNavigation = () => {
 
   return (
     <nav className='navbar sticky-top bg-white mb-2 shadow-sm d-flex px-3'>
-      <Route path='/green-grocery'>
+      <div>
         <Link to='/' className='navbar-brand'>
-          {'<-'} Landing Page
+          {<BoxArrowLeft />} Landing Page
         </Link>
+      </div>
+      <div className='d-flex gap-4'>
         {!isInCheckout && <Cart />}
         {isLoggedIn ? <LogoutButton /> : <LoginButton />}
         {!isInTheShop && <BackToShopButton />}
-      </Route>
+      </div>
     </nav>
   );
 };

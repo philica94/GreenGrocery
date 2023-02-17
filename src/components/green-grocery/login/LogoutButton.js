@@ -10,7 +10,7 @@ const LogoutButton = () => {
   };
 
   return (
-    <Button type='submit' className='navbar-brand' onClick={submitLogoutHandler}>
+    <Button type='submit' className='navbar-brand d-flex' onClick={submitLogoutHandler}>
       Log Out
     </Button>
   );

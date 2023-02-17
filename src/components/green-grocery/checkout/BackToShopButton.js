@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 const BackToShopButton = () => {
   return (
     <div>
-      <Link to='/green-grocery' className='btn btn-outline-primary navbar-brand'>
+      <Link to='/green-grocery' className='navbar-brand d-flex'>
         <span>Back to Shop</span>
       </Link>
     </div>
