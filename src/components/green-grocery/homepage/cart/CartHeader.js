@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 
 import { Cart3 } from 'react-bootstrap-icons';
-import { selectTotalCartItemsAmount } from '../../../../store';
+import { selectTotalCartItemsAmount } from '../../../../store/slices/cart';
 
 const CartHeader = ({ className, openModal }) => {
   const totalItemsAmount = useSelector(selectTotalCartItemsAmount);

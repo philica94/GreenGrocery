@@ -5,7 +5,7 @@ import { useState } from 'react';
 import Modal from '../../../UI/Modal';
 import CartHeader from './CartHeader';
 import CartProduct from './CartProduct';
-import { selectTotalCartItemsPrice } from '../../../../store';
+import { selectTotalCartItemsPrice } from '../../../../store/slices/cart';
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);

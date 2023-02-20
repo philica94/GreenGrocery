@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { cartActions } from '../../../../store/index';
+import { cartActions } from '../../../../store/slices/cart';
 import { Trash3 } from 'react-bootstrap-icons';
 
 import Button from '../../../UI/Button';

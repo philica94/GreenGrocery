@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useRef, useState } from 'react';
 import Button from '../../../UI/Button';
-import { cartActions } from '../../../../store/index';
+import { cartActions } from '../../../../store/slices/cart';
 
 const ProductForm = ({ id, name, price, image }) => {
   const dispatch = useDispatch();
