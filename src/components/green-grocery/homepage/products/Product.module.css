@@ -1,0 +1,7 @@
+.cardFavourite .hiddenChild {
+  visibility: hidden;
+}
+
+.cardFavourite:hover .hiddenChild {
+  visibility: visible;
+}

@@ -1,13 +1,27 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { favouriteActions } from '../../../../store/slices/favourite';
+
+import { Star, StarFill } from 'react-bootstrap-icons';
 import classes from './ProductInfo.module.css';
 
-import { Star } from 'react-bootstrap-icons';
+const ProductInfo = ({ id, name, price, image, favouriteClass }) => {
+  const dispatch = useDispatch();
+  const favourite = useSelector((state) => state.favourite.id.includes(id));
 
-const ProductInfo = ({ name, price, image, onShowStar }) => {
+  const toggleFavouriteHandler = () => {
+    dispatch(favouriteActions.toggleFavourite(id));
+  };
+
   return (
     <div>
-      {onShowStar && (
-        <span className={classes.starPosition}>
+      {!favourite && (
+        <span className={`${classes.starPosition} ${favouriteClass}`} onClick={toggleFavouriteHandler}>
           <Star size={25} />
+        </span>
+      )}
+      {favourite && (
+        <span className={classes.starPosition} onClick={toggleFavouriteHandler}>
+          <StarFill size={25} />
         </span>
       )}
       <h6 className='m-3'>
