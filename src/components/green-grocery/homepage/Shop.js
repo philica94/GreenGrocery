@@ -1,8 +1,9 @@
 import Product from './products/Product';
-import { FRUIT_PRODUCTS, VEGETABLE_PRODUCTS } from '../../../data/productsData';
+import { useSelector } from 'react-redux';
 
 const Shop = () => {
-  const fruitList = FRUIT_PRODUCTS.map((fruitProd) => <Product key={fruitProd.id} {...fruitProd} />);
+  const fruitProducts = useSelector((state) => state.cart.products);
+  const fruitList = fruitProducts.map((fruitProd) => <Product key={fruitProd.id} {...fruitProd} />);
 
   return <div className='row text-center'>{fruitList}</div>;
 };

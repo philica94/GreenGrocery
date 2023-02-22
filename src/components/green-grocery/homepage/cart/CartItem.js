@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { cartActions } from '../../../../store/slices/cart';
 import { Trash3 } from 'react-bootstrap-icons';
 
@@ -6,16 +6,15 @@ import Button from '../../../UI/Button';
 
 const CartItem = ({ id, name, amount, price, image }) => {
   const dispatch = useDispatch();
-  const item = { id };
 
   const addOneQuantityProductHandler = () => {
-    dispatch(cartActions.increaseCartItemAmount(item));
+    dispatch(cartActions.increaseCartItemAmount(id));
   };
   const removeOneQuantityProductHandler = () => {
-    dispatch(cartActions.reduceCartItemAmount(item));
+    dispatch(cartActions.reduceCartItemAmount(id));
   };
   const removeEntireProductHandler = () => {
-    dispatch(cartActions.removeCartItem(item));
+    dispatch(cartActions.removeCartItem(id));
   };
 
   return (
@@ -36,7 +35,7 @@ const CartItem = ({ id, name, amount, price, image }) => {
           <h5 className='mt-3 me-3'>${(amount * price).toFixed(2)}</h5>
           <span className='me-3'>${price.toFixed(2)}</span>
         </div>
-        <div className='col-1 text-center' onClick={removeEntireProductHandler}>
+        <div className='col-1 text-center' role='button' onClick={removeEntireProductHandler}>
           <Trash3 />
         </div>
       </div>

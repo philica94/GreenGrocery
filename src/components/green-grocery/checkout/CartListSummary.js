@@ -8,9 +8,7 @@ const CartListSummary = () => {
   const cart = useSelector((state) => state.cart);
   const totalItemsPrice = useSelector(selectTotalCartItemsPrice).toFixed(2);
 
-  const cartList = cart.items.map(({ id, name, price, amount, image }) => (
-    <CartItem key={id} id={id} name={name} price={price} amount={amount} image={image} />
-  ));
+  const cartList = cart.items.map((item) => <CartItem key={item.id} {...item} />);
 
   return (
     <div className='row justify-content-md-center'>

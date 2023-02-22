@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 import Button from '../../../UI/Button';
 import { cartActions } from '../../../../store/slices/cart';
 
-const ProductForm = ({ id, name, price, image }) => {
+const ProductForm = ({ id }) => {
   const dispatch = useDispatch();
   const [checkedQuantity, setCheckedQuantity] = useState(true);
 
@@ -20,9 +20,8 @@ const ProductForm = ({ id, name, price, image }) => {
     event.preventDefault();
 
     const enteredAmountNumber = Number(amountInputItemRef.current.value);
-    const item = { id, name, price, image, amount: enteredAmountNumber };
 
-    dispatch(cartActions.setItemQuantity({ item, changeAmount: enteredAmountNumber }));
+    dispatch(cartActions.setItemQuantity({ itemId: id, changeAmount: enteredAmountNumber }));
   };
 
   return (
