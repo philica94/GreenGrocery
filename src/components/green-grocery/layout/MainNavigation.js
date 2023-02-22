@@ -6,6 +6,7 @@ import BackToShopButton from '../checkout/BackToShopButton';
 import LoginButton from '../login/LoginButton';
 import LogoutButton from '../login/LogoutButton';
 import { BoxArrowLeft } from 'react-bootstrap-icons';
+import Favourites from '../homepage/favourites/Favourites';
 
 const MainNavigation = () => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -22,6 +23,7 @@ const MainNavigation = () => {
         </Link>
       </div>
       <div className='d-flex gap-4'>
+        <Favourites />
         {!isInCheckout && <Cart />}
         {isLoggedIn ? <LogoutButton /> : <LoginButton />}
         {!isInTheShop && <BackToShopButton />}

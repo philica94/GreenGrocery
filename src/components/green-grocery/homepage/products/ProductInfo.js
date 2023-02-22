@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { favouriteActions } from '../../../../store/slices/favourite';
+import { favouriteActions } from '../../../../store/slices/favourites';
 
 import { Star, StarFill } from 'react-bootstrap-icons';
 import classes from './ProductInfo.module.css';
@@ -16,12 +16,12 @@ const ProductInfo = ({ id, name, price, image, favouriteClass }) => {
     <div>
       {!favourite && (
         <span className={`${classes.starPosition} ${favouriteClass}`} onClick={toggleFavouriteHandler}>
-          <Star size={25} />
+          <Star size={20} />
         </span>
       )}
       {favourite && (
         <span className={classes.starPosition} onClick={toggleFavouriteHandler}>
-          <StarFill size={25} />
+          <StarFill size={20} />
         </span>
       )}
       <h6 className='m-3'>
