@@ -1,0 +1,15 @@
+.starPosition {
+  position: absolute;
+  top: 5%;
+  right: 6%;
+  cursor: pointer;
+}
+
+.starWrapper {
+  visibility: hidden;
+}
+
+div:hover > .starWrapper,
+.isAddedToFavourite {
+  visibility: visible;
+}
