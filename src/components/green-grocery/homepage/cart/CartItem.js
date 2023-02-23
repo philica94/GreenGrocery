@@ -23,7 +23,7 @@ const CartItem = ({ id, name, amount, price, image }) => {
         <div className='col-3'>
           <img src={image} height='80px' />
         </div>
-        <div className='col-7 text-start'>
+        <div className='col-5 col-xl-7 text-start'>
           <h6 className='my-3'>{name}</h6>
           <div className='input-group mb-4'>
             <Button onClick={removeOneQuantityProductHandler}>-</Button>
@@ -31,11 +31,11 @@ const CartItem = ({ id, name, amount, price, image }) => {
             <Button onClick={addOneQuantityProductHandler}>+</Button>
           </div>
         </div>
-        <div className='col-1 text-end'>
+        <div className='col-2 col-xl-1 text-end'>
           <h5 className='mt-3 me-3'>${(amount * price).toFixed(2)}</h5>
           <span className='me-3'>${price.toFixed(2)}</span>
         </div>
-        <div className='col-1 text-center' role='button' onClick={removeEntireProductHandler}>
+        <div className='col-2 col-xl-1 text-center' role='button' onClick={removeEntireProductHandler}>
           <Trash3 />
         </div>
       </div>

@@ -12,7 +12,7 @@ const CartListSummary = () => {
 
   return (
     <div className='row justify-content-md-center'>
-      <div className='col-6 bg-body'>
+      <div className='col-md-10 bg-body'>
         {cartList}
         <div className='row align-items-center p-3 border'>
           <div className='col text-end'>

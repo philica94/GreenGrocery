@@ -17,7 +17,7 @@ const Login = ({ headerContent, pathTo }) => {
 
   return (
     <div className='row justify-content-md-center'>
-      <Card additionalClasses='col-md-6'>
+      <Card additionalClasses='col-md-10'>
         <h5 className='m-3'>{headerContent}</h5>
         <hr />
         <form>

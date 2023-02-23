@@ -5,7 +5,7 @@ import Button from '../../UI/Button';
 const OrderWithoutRegistrationForm = () => {
   return (
     <div className='row justify-content-md-center'>
-      <Card additionalClasses='col-md-6'>
+      <Card additionalClasses='col-md-10'>
         <h5 className='m-3'>Order without registration</h5>
         <hr />
         <form>
