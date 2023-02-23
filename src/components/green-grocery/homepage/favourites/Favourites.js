@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux';
 
-import { Star, StarFill } from 'react-bootstrap-icons';
+import { FavouriteProduct } from './FavouriteProduct';
 import { useModal } from '../../../../hooks/useModal';
 import Modal from '../../../UI/Modal';
-import Button from '../../../UI/Button';
+import { Star, StarFill } from 'react-bootstrap-icons';
 
 const Favourites = () => {
   const favouriteId = useSelector((state) => state.favourite.id);
@@ -11,15 +11,7 @@ const Favourites = () => {
   const { showModal, openModal: openModalHandler, closeModal: closeModalHandler } = useModal();
 
   const favouriteListData = favouriteId.map((favId) => products.find((prod) => prod.id === favId));
-  const favouriteList = favouriteListData.map(({ name, image }) => {
-    return (
-      <div className='d-flex mb-4'>
-        <span>{image}</span>
-        <h4>{name}</h4>
-        <div className='input-group'>{/* <Button onClick={addOneQuantityProductHandler}>Add to Cart</Button> */}</div>
-      </div>
-    );
-  });
+  const favouriteList = favouriteListData.map((favProd) => <FavouriteProduct key={favProd.id} {...favProd} />);
 
   const emptyFavourites = <h5 className='d-flex justify-content-center m-5'>You have no favourites yes</h5>;
 
