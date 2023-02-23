@@ -5,7 +5,7 @@ import ProductInfo from './ProductInfo';
 const Product = (prod) => {
   return (
     <div className='col-xxl-3 col-xl-4 col-md-6 col-12'>
-      <Card additionalClasses={classes.cardFavourite}>
+      <Card>
         <ProductInfo {...prod} />
         <ProductForm id={prod.id} />
       </Card>
