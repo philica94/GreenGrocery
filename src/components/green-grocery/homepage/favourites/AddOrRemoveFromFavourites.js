@@ -4,7 +4,18 @@ import { favouriteActions } from '../../../../store/slices/favourites';
 import { Star, StarFill } from 'react-bootstrap-icons';
 import classes from './AddOrRemoveFromFavourites.module.css';
 
-const AddOrRemoveFromFavourites = ({ id }) => {
+const VARIANTS = {
+  shopProduct: {
+    size: 20,
+    cssClass: 'starPosition',
+  },
+  favourite: {
+    size: 15,
+    cssClass: '',
+  },
+};
+
+const AddOrRemoveFromFavourites = ({ id, variant }) => {
   const dispatch = useDispatch();
   const favourite = useSelector((state) => state.favourite.id.includes(id));
 
@@ -12,11 +23,13 @@ const AddOrRemoveFromFavourites = ({ id }) => {
     dispatch(favouriteActions.toggleFavourite(id));
   };
 
-  const cssClasses = `${classes.starPosition} ${classes.starWrapper} ${favourite ? classes.isAddedToFavourite : ''}`;
+  const { size, cssClass } = VARIANTS[variant];
+
+  const cssClasses = `${classes[cssClass]} ${classes.starWrapper} ${favourite ? classes.isAddedToFavourite : ''}`;
   const StarComponent = favourite ? StarFill : Star;
   return (
-    <span className={cssClasses} onClick={toggleFavouriteHandler}>
-      <StarComponent size={20} />
+    <span className={cssClasses} onClick={toggleFavouriteHandler} role='button'>
+      <StarComponent size={size} />
     </span>
   );
 };

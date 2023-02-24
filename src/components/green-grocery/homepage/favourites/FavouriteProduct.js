@@ -20,8 +20,8 @@ export const FavouriteProduct = ({ id, name, image }) => {
         <div className='d-flex align-items-center gap-3'>
           <img src={image} height='50px' />
           <span className='fs-4 fw-semibold'>{name}</span>
+          <AddOrRemoveFromFavourites id={id} variant='favourite' />
         </div>
-        <AddOrRemoveFromFavourites />
         <div className='d-flex align-items-center flex'>
           <Button onClick={addOneQuantityProductHandler}>Add to Cart</Button>
         </div>

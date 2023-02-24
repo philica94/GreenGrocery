@@ -3,7 +3,7 @@ import AddOrRemoveFromFavourites from '../favourites/AddOrRemoveFromFavourites';
 const ProductInfo = ({ id, name, price, image }) => {
   return (
     <div>
-      <AddOrRemoveFromFavourites id={id} />
+      <AddOrRemoveFromFavourites id={id} variant='shopProduct' />
       <h6 className='m-3'>
         <img src={image} height='150px' />
       </h6>
