@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/green-grocery/static/css/main.03f80d1c.css",
-    "main.js": "/green-grocery/static/js/main.ccc17650.js",
-    "static/js/787.eacb69d3.chunk.js": "/green-grocery/static/js/787.eacb69d3.chunk.js",
-    "index.html": "/green-grocery/index.html",
-    "main.03f80d1c.css.map": "/green-grocery/static/css/main.03f80d1c.css.map",
-    "main.ccc17650.js.map": "/green-grocery/static/js/main.ccc17650.js.map",
-    "787.eacb69d3.chunk.js.map": "/green-grocery/static/js/787.eacb69d3.chunk.js.map"
+    "main.css": "./static/css/main.03f80d1c.css",
+    "main.js": "./static/js/main.90fd2947.js",
+    "static/js/787.eacb69d3.chunk.js": "./static/js/787.eacb69d3.chunk.js",
+    "index.html": "./index.html",
+    "main.03f80d1c.css.map": "./static/css/main.03f80d1c.css.map",
+    "main.90fd2947.js.map": "./static/js/main.90fd2947.js.map",
+    "787.eacb69d3.chunk.js.map": "./static/js/787.eacb69d3.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.03f80d1c.css",
-    "static/js/main.ccc17650.js"
+    "static/js/main.90fd2947.js"
   ]
 }
