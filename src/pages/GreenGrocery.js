@@ -5,6 +5,7 @@ import MainNavigation from '../components/green-grocery/layout/MainNavigation';
 import Shop from '../components/green-grocery/homepage/Shop';
 import Login from '../components/green-grocery/login/Login';
 import Checkout from './green-grocery/Checkout';
+import SignUp from '../components/green-grocery/login/SignUp';
 
 const GreenGrocery = () => {
   return (
@@ -16,6 +17,9 @@ const GreenGrocery = () => {
         </Route>
         <Route path='/green-grocery/login'>
           <Login headerContent='Sign in' pathTo='/green-grocery' />
+        </Route>
+        <Route path='/green-grocery/sign-up'>
+          <SignUp />
         </Route>
         <Route path='/green-grocery/checkout'>
           <Checkout />

@@ -1,7 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
 
 const initialAuthState = {
   isLoggedIn: false,
+  users: [],
 };
 
 export const authSlice = createSlice({
@@ -13,6 +14,13 @@ export const authSlice = createSlice({
     },
     logout(state) {
       state.isLoggedIn = false;
+    },
+    signUp(state, { payload }) {
+      const existingUserIndex = state.users.findIndex(({ username }) => username === payload.username);
+
+      if (existingUserIndex === -1) {
+        state.users.push(payload);
+      }
     },
   },
 });

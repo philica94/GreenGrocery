@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import { authActions } from '../../../store/slices/auth';
 import Button from '../../UI/Button';
@@ -11,6 +12,7 @@ const SignUp = () => {
   const passwordRef = useRef();
   const repeatedPasswordRef = useRef();
   const disptach = useDispatch();
+  const history = useHistory();
 
   const submitRegisterHandler = (e) => {
     e.preventDefault();
@@ -18,8 +20,16 @@ const SignUp = () => {
     const enteredPassword = passwordRef.current.value;
     const enteredRepeatedPassword = repeatedPasswordRef.current.value;
     const userSingUpData = { username: enteredUsername, password: enteredPassword };
+    const passwordMin6Chars = enteredPassword.length >= 6;
+    const passwordMatchesNumber = enteredPassword.match(/[0-9]/g);
 
-    if (enteredPassword === enteredRepeatedPassword) {
+    if (enteredPassword !== enteredRepeatedPassword) {
+      alert('Repeated password is not the same');
+    } else if (!passwordMin6Chars) {
+      alert('Password must be at least 6 characters long');
+    } else if (!passwordMatchesNumber) {
+      alert('Password must contain a number');
+    } else {
       disptach(authActions.signUp(userSingUpData));
     }
   };
