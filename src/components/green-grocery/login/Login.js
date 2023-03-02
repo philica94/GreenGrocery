@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { authActions } from '../../../store/slices/auth';
 
 import Button from '../../UI/Button';
@@ -23,7 +23,9 @@ const Login = ({ headerContent, pathTo }) => {
         <form>
           <Input id='loginEmail' labelText='E-mail' type='email'></Input>
           <Input id='loginPassword' labelText='Password' type='password'></Input>
-          <div className='d-flex justify-content-end'>
+          <div className='d-flex justify-content-between'>
+            <div></div>
+            <Link to='/green-grocery/sign-up'>create an account</Link>
             <Button type='submit' onClick={submitLoginHandler}>
               Login
             </Button>
