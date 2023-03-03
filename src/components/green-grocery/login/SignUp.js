@@ -1,5 +1,5 @@
-import { useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useModal } from '../../../hooks/useModal';
 
@@ -15,6 +15,8 @@ const SignUp = () => {
   const repeatedPasswordRef = useRef();
   const disptach = useDispatch();
   const history = useHistory();
+  const users = useSelector((state) => state.auth.users);
+  const [userAccountAlreadyExists, setUserAccountAlreadyExists] = useState(false);
 
   const submitRegisterHandler = (e) => {
     e.preventDefault();
@@ -28,6 +30,11 @@ const SignUp = () => {
     const passwordMin6Chars = enteredPassword.length >= 6;
     const passwordMatchesNumber = enteredPassword.match(/[0-9]/g);
 
+    const userAccountAlreadyExistsHandler = users.find(({ username }) => username === enteredUsername);
+    if (userAccountAlreadyExistsHandler) {
+      setUserAccountAlreadyExists(true);
+    }
+
     if (!usernameValidity) {
       alert('You have entered an invalid email address');
     } else if (enteredPassword !== enteredRepeatedPassword) {
@@ -38,17 +45,30 @@ const SignUp = () => {
       alert('Password must contain a number');
     } else {
       disptach(authActions.signUp(userSingUpData));
-      // history.push('/green-grocery/login');
       openModalHandler();
     }
   };
 
   const { showModal, openModal: openModalHandler, closeModal: closeModalHandler } = useModal();
 
-  const successMessage = (
-    <p className='text-center m-5 fs-4 lh-base text-break'>
-      Congratulations, your account has been successfully created!
-    </p>
+  const openSignInPageHandler = () => {
+    history.push('/green-grocery/login');
+  };
+
+  const createdAccountMessage = 'Congratulations, your account has been successfully created!';
+  const enteredEmailExistsMessage = 'This email address already exists in the database. Please sing in.';
+
+  const messageContent = (
+    <div>
+      <p className='text-center m-5 fs-4 lh-base text-break'>
+        {userAccountAlreadyExists ? enteredEmailExistsMessage : createdAccountMessage}
+      </p>
+      <div className='text-center mb-4'>
+        <Button className='btn-outline-success btn-lg' onClick={openSignInPageHandler}>
+          Continue
+        </Button>
+      </div>
+    </div>
   );
 
   return (
@@ -67,8 +87,12 @@ const SignUp = () => {
           </div>
         </form>
       </Card>
-      <Modal show={showModal} onClose={closeModalHandler} header={<h3>Succes!</h3>}>
-        {successMessage}
+      <Modal
+        show={showModal}
+        onClose={closeModalHandler}
+        header={<h3>{userAccountAlreadyExists ? 'Oops!' : 'Succes!'}</h3>}
+      >
+        {messageContent}
       </Modal>
     </div>
   );
