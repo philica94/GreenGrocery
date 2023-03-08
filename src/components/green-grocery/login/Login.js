@@ -1,4 +1,5 @@
-import { useDispatch } from 'react-redux';
+import { useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { authActions } from '../../../store/slices/auth';
 
@@ -9,11 +10,23 @@ import Input from '../../UI/Input';
 const Login = ({ headerContent, pathTo }) => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const usernameRef = useRef();
+  const passwordRef = useRef();
+  const userLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
-  const submitLoginHandler = (e) => {
-    dispatch(authActions.login());
-    history.push(pathTo);
+  const submitLoginHandler = async (e) => {
+    e.preventDefault();
+    const enteredUsername = usernameRef.current.value;
+    const enteredPassword = passwordRef.current.value;
+    const userLoginData = { username: enteredUsername, password: enteredPassword };
+    dispatch(authActions.login(userLoginData));
   };
+
+  useEffect(() => {
+    if (userLoggedIn) {
+      history.push(pathTo);
+    }
+  }, [userLoggedIn]);
 
   return (
     <div className='row justify-content-md-center'>
@@ -21,8 +34,8 @@ const Login = ({ headerContent, pathTo }) => {
         <h5 className='m-3'>{headerContent}</h5>
         <hr />
         <form>
-          <Input id='loginEmail' labelText='E-mail' type='email'></Input>
-          <Input id='loginPassword' labelText='Password' type='password'></Input>
+          <Input id='loginEmail' labelText='E-mail' type='email' ref={usernameRef}></Input>
+          <Input id='loginPassword' labelText='Password' type='password' ref={passwordRef}></Input>
           <div className='d-flex justify-content-between'>
             <div></div>
             <Link to='/green-grocery/sign-up'>create an account</Link>
