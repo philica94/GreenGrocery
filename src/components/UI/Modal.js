@@ -11,7 +11,9 @@ const Modal = ({ children, show, onClose, header, footer }) => {
   const footerContent = footer && (
     <div className='modal-footer'>
       {footer.additionalContent ? footer.additionalContent : ''}
-      <Button className='btn-secondary'>{footer.cancelButtonText}</Button>
+      <Button onClick={footer.onCancelClick} className='btn-secondary'>
+        {footer.cancelButtonText}
+      </Button>
       <Button onClick={footer.onOkClick}>{footer.okButtonText}</Button>
     </div>
   );

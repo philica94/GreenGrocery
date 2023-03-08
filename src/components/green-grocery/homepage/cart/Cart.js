@@ -27,6 +27,10 @@ const Cart = () => {
     history.push('/green-grocery/checkout');
   };
 
+  const onCancelClick = () => {
+    closeModalHandler();
+  };
+
   return (
     <>
       <CartHeader className='navbar-brand btn btn-outline-primary d-flex p-sm-2 p-1' openModal={openModalHandler} />
@@ -38,7 +42,7 @@ const Cart = () => {
           additionalContent,
           onOkClick,
           okButtonText: 'To checkout',
-          onCancelClick: () => {},
+          onCancelClick,
           cancelButtonText: 'Exit',
         }}
       >
