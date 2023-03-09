@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Input = React.forwardRef(({ id, labelText, wrapperClassName = 'mb-3', ...attributes }, ref) => {
+const Input = React.forwardRef(({ id, labelText, wrapperClassName = 'mt-3', ...attributes }, ref) => {
   return (
     <div className={wrapperClassName}>
       <label htmlFor={id} className='form-label'>
