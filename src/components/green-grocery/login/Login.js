@@ -13,13 +13,24 @@ const Login = ({ headerContent, pathTo }) => {
   const usernameRef = useRef();
   const passwordRef = useRef();
   const userLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const usersData = useSelector((state) => state.auth.users);
 
-  const submitLoginHandler = async (e) => {
+  const submitLoginHandler = (e) => {
     e.preventDefault();
     const enteredUsername = usernameRef.current.value;
     const enteredPassword = passwordRef.current.value;
     const userLoginData = { username: enteredUsername, password: enteredPassword };
-    dispatch(authActions.login(userLoginData));
+
+    const existingUserIndex = usersData.findIndex(({ username }) => username === userLoginData.username);
+    const successfullyEnteredLoginData = usersData[existingUserIndex]?.password === userLoginData.password;
+
+    if (usersData[existingUserIndex]?.username !== userLoginData.username) {
+      alert('You have entered an invalid email address');
+    } else if (!successfullyEnteredLoginData) {
+      alert('Your password is invalid, please try again');
+    } else if (successfullyEnteredLoginData) {
+      dispatch(authActions.login(userLoginData));
+    }
   };
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-import { createSlice, current } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialAuthState = {
   isLoggedIn: false,
@@ -9,13 +9,8 @@ export const authSlice = createSlice({
   name: 'authentication',
   initialState: initialAuthState,
   reducers: {
-    login(state, { payload }) {
-      const existingUserIndex = state.users.findIndex(({ username }) => username === payload.username);
-      const successfullyEnteredLoginData = state.users[existingUserIndex].password === payload.password;
-
-      if (successfullyEnteredLoginData) {
-        state.isLoggedIn = true;
-      }
+    login(state) {
+      state.isLoggedIn = true;
     },
     logout(state) {
       state.isLoggedIn = false;
