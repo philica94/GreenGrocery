@@ -7,6 +7,7 @@ import { authActions } from '../../../store/slices/auth';
 import Button from '../../UI/Button';
 import Card from '../../UI/Card';
 import Input from '../../UI/Input';
+import InvalidMessage from '../../UI/InvalidMessage';
 import Modal from '../../UI/Modal';
 
 const SignUp = () => {
@@ -17,9 +18,19 @@ const SignUp = () => {
   const history = useHistory();
   const users = useSelector((state) => state.auth.users);
   const [userAccountAlreadyExists, setUserAccountAlreadyExists] = useState(false);
+  const [showInvalidEmailMessage, setShowInvalidEmailMessage] = useState(false);
+  const [showTooShortPasswordMessage, setShowTooShortPasswordMessage] = useState(false);
+  const [showNoNumberInPasswordMessage, setShowNoNumberInPasswordMessage] = useState(false);
+  const [showInvalidRepeatedPasswordMessage, setShowInvalidRepeatedPasswordMessage] = useState(false);
 
   const submitRegisterHandler = (e) => {
     e.preventDefault();
+
+    setShowInvalidEmailMessage(false);
+    setShowTooShortPasswordMessage(false);
+    setShowNoNumberInPasswordMessage(false);
+    setShowInvalidRepeatedPasswordMessage(false);
+
     const enteredUsername = usernameRef.current.value;
     const enteredPassword = passwordRef.current.value;
     const enteredRepeatedPassword = repeatedPasswordRef.current.value;
@@ -36,13 +47,19 @@ const SignUp = () => {
     }
 
     if (!usernameValidity) {
-      alert('You have entered an invalid email address');
+      setShowInvalidEmailMessage(true);
+    }
+
+    if (!passwordMin6Chars || !passwordMatchesNumber) {
+      if (!passwordMin6Chars) {
+        setShowTooShortPasswordMessage(true);
+      }
+      if (!passwordMatchesNumber) {
+        setShowNoNumberInPasswordMessage(true);
+      }
+      return;
     } else if (enteredPassword !== enteredRepeatedPassword) {
-      alert('Repeated password is not the same');
-    } else if (!passwordMin6Chars) {
-      alert('Password must be at least 6 characters long');
-    } else if (!passwordMatchesNumber) {
-      alert('Password must contain a number');
+      setShowInvalidRepeatedPasswordMessage(true);
     } else {
       disptach(authActions.signUp(userSingUpData));
       openModalHandler();
@@ -78,9 +95,13 @@ const SignUp = () => {
         <hr />
         <form>
           <Input id='loginEmail' labelText='E-mail' type='email' ref={usernameRef}></Input>
+          {showInvalidEmailMessage && <InvalidMessage message={'You have entered an invalid email address'} />}
           <Input id='loginPassword' labelText='Password' type='password' ref={passwordRef}></Input>
+          {showTooShortPasswordMessage && <InvalidMessage message={'Password must be at least 6 characters long'} />}
+          {showNoNumberInPasswordMessage && <InvalidMessage message={'Password must contain a number'} />}
           <Input id='loginPasswordRepeat' labelText='Repeat password' type='password' ref={repeatedPasswordRef}></Input>
-          <div className='d-flex justify-content-end'>
+          {showInvalidRepeatedPasswordMessage && <InvalidMessage message={'Repeated password is not the same'} />}
+          <div className='d-flex justify-content-end mt-3'>
             <Button type='submit' onClick={submitRegisterHandler}>
               Sign up
             </Button>
