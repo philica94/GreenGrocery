@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import useFocus from '../../../hooks/useFocus';
 import { useModal } from '../../../hooks/useModal';
 
 import { authActions } from '../../../store/slices/auth';
@@ -66,7 +67,12 @@ const SignUp = () => {
     }
   };
 
-  const { showModal, openModal: openModalHandler, closeModal: closeModalHandler } = useModal();
+  const [buttonRef, setButtonRefFocus] = useFocus();
+  const {
+    showModal,
+    openModal: openModalHandler,
+    closeModal: closeModalHandler,
+  } = useModal({ afterOpening: setButtonRefFocus });
 
   const openSignInPageHandler = () => {
     history.push('/green-grocery/login');
@@ -81,7 +87,7 @@ const SignUp = () => {
         {userAccountAlreadyExists ? enteredEmailExistsMessage : createdAccountMessage}
       </p>
       <div className='text-center mb-4'>
-        <Button className='btn-outline-success btn-lg' onClick={openSignInPageHandler}>
+        <Button className='btn-outline-success btn-lg' onClick={openSignInPageHandler} ref={buttonRef}>
           Continue
         </Button>
       </div>
@@ -93,7 +99,7 @@ const SignUp = () => {
       <Card additionalClasses='col-md-10'>
         <h5 className='m-3'>Sign up</h5>
         <hr />
-        <form>
+        <form onSubmit={submitRegisterHandler}>
           <Input id='loginEmail' labelText='E-mail' type='email' ref={usernameRef}></Input>
           {showInvalidEmailMessage && <InvalidMessage message={'You have entered an invalid email address'} />}
           <Input id='loginPassword' labelText='Password' type='password' ref={passwordRef}></Input>
@@ -102,9 +108,7 @@ const SignUp = () => {
           <Input id='loginPasswordRepeat' labelText='Repeat password' type='password' ref={repeatedPasswordRef}></Input>
           {showInvalidRepeatedPasswordMessage && <InvalidMessage message={'Repeated password is not the same'} />}
           <div className='d-flex justify-content-end mt-3'>
-            <Button type='submit' onClick={submitRegisterHandler}>
-              Sign up
-            </Button>
+            <Button type='submit'>Sign up</Button>
           </div>
         </form>
       </Card>
