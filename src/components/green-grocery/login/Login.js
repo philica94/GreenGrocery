@@ -8,10 +8,9 @@ import Card from '../../UI/Card';
 import Input from '../../UI/Input';
 import InvalidMessage from '../../UI/InvalidMessage';
 
-const Login = ({ headerContent, pathTo }) => {
+const Login = ({ headerContent, pathTo, usernameRef }) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const usernameRef = useRef();
   const passwordRef = useRef();
   const userLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const usersData = useSelector((state) => state.auth.users);
