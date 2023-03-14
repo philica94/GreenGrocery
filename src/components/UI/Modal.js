@@ -25,10 +25,12 @@ const Modal = ({ children, show, onClose, header, footer }) => {
         <div className='modal fade d-block show' tabIndex={-1} onClick={handleModalClick}>
           <div className='modal-dialog'>
             <div className='modal-content'>
-              <div className='modal-header'>
-                {header}
-                <button className='btn-close' onClick={onClose}></button>
-              </div>
+              {header && (
+                <div className='modal-header'>
+                  {header}
+                  <button className='btn-close' onClick={onClose}></button>
+                </div>
+              )}
               <div className='modal-body'>{children}</div>
               {footerContent}
             </div>
