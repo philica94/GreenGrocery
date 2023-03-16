@@ -1,12 +1,12 @@
 import React from 'react';
 
-const Button = React.forwardRef((props, ref) => {
-  const type = props.type || 'button';
-  const className = props.className || 'btn-outline-primary';
+const Button = React.forwardRef(({ className, type, onClick, children, ...rest }, ref) => {
+  const buttonType = type || 'button';
+  const computedClasses = className || 'btn-outline-primary';
 
   return (
-    <button type={type} className={`btn ${className}`} onClick={props.onClick} ref={ref}>
-      {props.children}
+    <button type={buttonType} className={`btn ${computedClasses}`} onClick={onClick} ref={ref} {...rest}>
+      {children}
     </button>
   );
 });
