@@ -8,10 +8,13 @@ import Card from '../../UI/Card';
 import Input from '../../UI/Input';
 import InvalidMessage from '../../UI/InvalidMessage';
 
-const Login = ({ headerContent, pathTo, usernameRef }) => {
+const Login = ({ headerContent, pathTo }) => {
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const usernameRef = useRef();
   const passwordRef = useRef();
+
   const userLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const usersData = useSelector((state) => state.auth.users);
   const [showInvalidEmailMessage, setShowInvalidEmailMessage] = useState(false);
@@ -49,7 +52,7 @@ const Login = ({ headerContent, pathTo, usernameRef }) => {
         <h5 className='m-3'>{headerContent}</h5>
         <hr />
         <form>
-          <Input id='loginEmail' labelText='E-mail' type='email' ref={usernameRef}></Input>
+          <Input id='loginEmail' labelText='E-mail' type='email' ref={usernameRef} autoFocus></Input>
           {showInvalidEmailMessage && <InvalidMessage message={'You have entered an invalid email address'} />}
           <Input id='loginPassword' labelText='Password' type='password' ref={passwordRef}></Input>
           {showInvalidPasswordMessage && <InvalidMessage message={'Your password is invalid, please try again'} />}

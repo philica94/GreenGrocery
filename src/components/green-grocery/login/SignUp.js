@@ -1,10 +1,10 @@
 import { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import useFocus from '../../../hooks/useFocus';
 import { useModal } from '../../../hooks/useModal';
 
 import { authActions } from '../../../store/slices/auth';
+import { setHtmlElementFocus } from '../../../utilities/setHtmlElementFocus';
 import Button from '../../UI/Button';
 import Card from '../../UI/Card';
 import Input from '../../UI/Input';
@@ -67,12 +67,11 @@ const SignUp = () => {
     }
   };
 
-  const [buttonRef, setButtonRefFocus] = useFocus();
   const {
     showModal,
     openModal: openModalHandler,
     closeModal: closeModalHandler,
-  } = useModal({ afterOpening: setButtonRefFocus });
+  } = useModal({ afterOpening: () => setHtmlElementFocus('signup-message-modal-btn') });
 
   const openSignInPageHandler = () => {
     history.push('/green-grocery/login');
@@ -87,7 +86,7 @@ const SignUp = () => {
         {userAccountAlreadyExists ? enteredEmailExistsMessage : createdAccountMessage}
       </p>
       <div className='text-center mb-4'>
-        <Button className='btn-outline-success btn-lg' onClick={openSignInPageHandler} ref={buttonRef}>
+        <Button id='signup-message-modal-btn' className='btn-outline-success btn-lg' onClick={openSignInPageHandler}>
           Continue
         </Button>
       </div>
@@ -100,7 +99,7 @@ const SignUp = () => {
         <h5 className='m-3'>Sign up</h5>
         <hr />
         <form onSubmit={submitRegisterHandler}>
-          <Input id='loginEmail' labelText='E-mail' type='email' ref={usernameRef}></Input>
+          <Input id='loginEmail' labelText='E-mail' type='email' ref={usernameRef} autoFocus></Input>
           {showInvalidEmailMessage && <InvalidMessage message={'You have entered an invalid email address'} />}
           <Input id='loginPassword' labelText='Password' type='password' ref={passwordRef}></Input>
           {showTooShortPasswordMessage && <InvalidMessage message={'Password must be at least 6 characters long'} />}

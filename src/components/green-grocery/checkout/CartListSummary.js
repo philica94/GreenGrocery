@@ -1,35 +1,39 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Check2Circle } from 'react-bootstrap-icons';
-import useFocus from '../../../hooks/useFocus';
 import { useModal } from '../../../hooks/useModal';
-import { selectTotalCartItemsPrice } from '../../../store/slices/cart';
-import CartItem from '../homepage/cart/CartItem';
-import Button from '../../UI/Button';
-import Modal from '../../UI/Modal';
+import { cartActions, selectTotalCartItemsPrice } from '../../../store/slices/cart';
 import { ordersActions } from '../../../store/slices/orders';
+import { setHtmlElementFocus } from '../../../utilities/setHtmlElementFocus';
+import CartItem from '../homepage/cart/CartItem';
+import Modal from '../../UI/Modal';
+import Button from '../../UI/Button';
+import { Check2Circle } from 'react-bootstrap-icons';
 
-const CartListSummary = ({ setInputRefFocus }) => {
+const CartListSummary = () => {
   const dispatch = useDispatch();
-
-  const cart = useSelector((state) => state.cart);
+  const cart = useSelector((state) => state.cart.items);
+  const userEmail = useSelector((state) => state.auth.loggedUserEmail);
   const totalItemsPrice = useSelector(selectTotalCartItemsPrice).toFixed(2);
+  const cartIsEmpty = useSelector((state) => state.cart.items.length === 0);
 
-  const cartList = cart.items.map((item) => <CartItem key={item.id} {...item} />);
+  const cartList = cart.map((item) => <CartItem key={item.id} {...item} />);
 
   const userLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
-  const [buttonRef, setButtonRefFocus] = useFocus();
   const {
     showModal,
     openModal: openModalHandler,
     closeModal: closeModalHandler,
-  } = useModal({ afterOpening: setButtonRefFocus, afterClosing: setInputRefFocus });
+  } = useModal({
+    afterOpening: () => setHtmlElementFocus('login-required-modal-btn'),
+    afterClosing: () => setHtmlElementFocus('loginEmail'),
+  });
 
   const order = () => {
     if (userLoggedIn) {
       openModalHandler();
-      dispatch(ordersActions.order());
+      dispatch(ordersActions.order({ cart, userEmail }));
+      dispatch(cartActions.removeEntireCart());
     } else {
       openModalHandler();
     }
@@ -54,7 +58,7 @@ const CartListSummary = ({ setInputRefFocus }) => {
     <div>
       {userLoggedIn ? orderConfirmedMessage : unloggedUserMessage}
       <div className='text-center mb-4'>
-        <Button className='btn-outline-success btn-lg' onClick={closeModalHandler} ref={buttonRef}>
+        <Button id='login-required-modal-btn' className='btn-outline-success btn-lg' onClick={closeModalHandler}>
           Continue
         </Button>
       </div>
@@ -63,17 +67,19 @@ const CartListSummary = ({ setInputRefFocus }) => {
 
   return (
     <>
-      <div className='row justify-content-md-center'>
-        <div className='col-md-10 bg-body'>
-          {cartList}
-          <div className='row align-items-center p-3 border'>
-            <div className='col text-end'>
-              <span className='fs-4 pe-3'>Total price: ${totalItemsPrice}</span>
-              <Button onClick={order}>Order</Button>
+      {cartIsEmpty || (
+        <div className='row justify-content-md-center'>
+          <div className='col-md-10 bg-body'>
+            {cartList}
+            <div className='row align-items-center p-3 border'>
+              <div className='col text-end'>
+                <span className='fs-4 pe-3'>Total price: ${totalItemsPrice}</span>
+                <Button onClick={order}>Order</Button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
       <Modal show={showModal} onClose={closeModalHandler} header={modalHeaderText}>
         {messageContent}
       </Modal>
