@@ -19,6 +19,9 @@ export const cartSlice = createSlice({
     removeCartItem(state, action) {
       cartSlice.caseReducers.setItemQuantity(state, { payload: { itemId: action.payload, amount: 0 } });
     },
+    removeEntireCart(state) {
+      state.items = [];
+    },
     setItemQuantity(state, action) {
       const {
         payload: { changeAmount, amount, itemId },
