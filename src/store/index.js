@@ -3,6 +3,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { authSlice } from './slices/auth';
 import { cartSlice } from './slices/cart';
 import { favouriteSlice } from './slices/favourites';
+import { ordersSlice } from './slices/orders';
 
 const localStorageMiddleware = ({ getState }) => {
   return (next) => (action) => {
@@ -20,7 +21,12 @@ const reHydrateStore = () => {
 };
 
 const store = configureStore({
-  reducer: { cart: cartSlice.reducer, auth: authSlice.reducer, favourite: favouriteSlice.reducer },
+  reducer: {
+    cart: cartSlice.reducer,
+    auth: authSlice.reducer,
+    favourite: favouriteSlice.reducer,
+    orders: ordersSlice.reducer,
+  },
   preloadedState: reHydrateStore(),
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(localStorageMiddleware),
 });
