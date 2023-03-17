@@ -14,7 +14,7 @@ const Cart = () => {
   const { showModal, openModal: openModalHandler, closeModal: closeModalHandler } = useModal();
 
   const cartList = cart.items.map((item) => <CartProduct key={item.id} {...item} />);
-  const emptyCart = <h5 className='d-flex justify-content-center m-5'>Your cart is empty...</h5>;
+  const emptyCartMessage = <h5 className='d-flex justify-content-center m-5'>Your cart is empty...</h5>;
 
   const additionalContent = (
     <div className='d-block'>
@@ -24,12 +24,14 @@ const Cart = () => {
 
   const onOkClick = () => {
     closeModalHandler();
-    history.push('/green-grocery/checkout');
+    history.push(`/green-grocery/${cartList.length === 0 ? '' : 'checkout'}`);
   };
 
   const onCancelClick = () => {
     closeModalHandler();
   };
+
+  const emptyCartCondition = cartList.length === 0 ? 'To shop' : 'To checkout';
 
   return (
     <>
@@ -41,12 +43,12 @@ const Cart = () => {
         footer={{
           additionalContent,
           onOkClick,
-          okButtonText: 'To checkout',
+          okButtonText: emptyCartCondition,
           onCancelClick,
           cancelButtonText: 'Exit',
         }}
       >
-        {cartList.length === 0 ? emptyCart : cartList}
+        {cartList.length === 0 ? emptyCartMessage : cartList}
       </Modal>
     </>
   );
