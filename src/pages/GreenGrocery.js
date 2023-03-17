@@ -6,6 +6,7 @@ import Shop from '../components/green-grocery/homepage/Shop';
 import Login from '../components/green-grocery/login/Login';
 import Checkout from './green-grocery/Checkout';
 import SignUp from '../components/green-grocery/login/SignUp';
+import ConfirmedOrders from './green-grocery/ConfirmedOrders';
 
 const GreenGrocery = () => {
   return (
@@ -23,6 +24,9 @@ const GreenGrocery = () => {
         </Route>
         <Route path='/green-grocery/checkout'>
           <Checkout />
+        </Route>
+        <Route path='/green-grocery/orders'>
+          <ConfirmedOrders />
         </Route>
       </main>
     </React.Fragment>

@@ -9,7 +9,7 @@ export const ordersSlice = createSlice({
   initialState: initialOrdersState,
   reducers: {
     order(state, { payload: { cart, userEmail } }) {
-      const orderDate = new Date().toLocaleString();
+      const orderDate = new Date().getTime();
       state.orders.push({ userEmail, createdAt: orderDate, items: cart });
     },
   },
