@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import { useModal } from '../../../hooks/useModal';
 import { cartActions, selectTotalCartItemsPrice } from '../../../store/slices/cart';
@@ -11,6 +12,7 @@ import { Check2Circle } from 'react-bootstrap-icons';
 
 const CartListSummary = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const cart = useSelector((state) => state.cart.items);
   const userEmail = useSelector((state) => state.auth.loggedUserEmail);
   const totalItemsPrice = useSelector(selectTotalCartItemsPrice).toFixed(2);
@@ -41,6 +43,8 @@ const CartListSummary = () => {
 
   const modalHeaderText = userLoggedIn ? null : <h3>Oops!</h3>;
 
+  const goToShopAfterOrder = () => history.push('/green-grocery');
+
   const unloggedUserMessage = (
     <p className='text-center m-5 fs-4 lh-base text-break'>If you want to finish your order, please sign in.</p>
   );
@@ -58,7 +62,11 @@ const CartListSummary = () => {
     <div>
       {userLoggedIn ? orderConfirmedMessage : unloggedUserMessage}
       <div className='text-center mb-4'>
-        <Button id='login-required-modal-btn' className='btn-outline-success btn-lg' onClick={closeModalHandler}>
+        <Button
+          id='login-required-modal-btn'
+          className='btn-outline-success btn-lg'
+          onClick={userLoggedIn ? goToShopAfterOrder : closeModalHandler}
+        >
           Continue
         </Button>
       </div>
