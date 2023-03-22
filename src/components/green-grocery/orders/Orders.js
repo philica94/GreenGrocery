@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import EmptyOrders from './EmptyOrders';
 import Order from './Order';
 
 const Orders = () => {
@@ -10,13 +11,21 @@ const Orders = () => {
     .sort((a, b) => b.createdAt - a.createdAt)
     .map((order) => <Order key={order.createdAt} order={order} />);
 
+  const noOrders = filteredLoggedUserOrders.length === 0;
+
   return (
-    <div className='row justify-content-md-center'>
-      <div className='col-md-10'>
-        <div className='m-3 fs-3 pe-3'>Orders</div>
-        {ordersList}
-      </div>
-    </div>
+    <>
+      {noOrders ? (
+        <EmptyOrders />
+      ) : (
+        <div className='row justify-content-md-center'>
+          <div className='col-md-10'>
+            <div className='m-3 fs-3 pe-3'>Orders</div>
+            {ordersList}
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
