@@ -3,16 +3,12 @@ import { useSelector } from 'react-redux';
 import { Cart3 } from 'react-bootstrap-icons';
 import { selectTotalCartItemsAmount } from '../../../../store/slices/cart';
 
-const CartHeader = ({ className, openModal }) => {
+const CartHeader = ({ openModal }) => {
   const totalItemsAmount = useSelector(selectTotalCartItemsAmount);
 
   return (
-    <div className={className} onClick={openModal}>
-      <div className='pe-1'>Cart</div>
-      <div style={{ transform: 'translate(0,-10%)' }}>
-        <Cart3 />
-      </div>
-      <span className='ps-1'>{totalItemsAmount}</span>
+    <div className={`navbar-brand btn btn-outline-primary`} onClick={openModal}>
+      Cart <Cart3 size={25} className='mb-1' /> {totalItemsAmount}
     </div>
   );
 };

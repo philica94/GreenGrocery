@@ -15,9 +15,9 @@ const MainNavigation = () => {
 
   return (
     <nav className='navbar sticky-top bg-white mb-2 shadow-sm d-flex px-3'>
-      <div className='d-flex'>
+      <div className='d-flex align-items-center'>
         <Link to='/' className='navbar-brand'>
-          {<BoxArrowLeft />} LP
+          <BoxArrowLeft size={40} />
         </Link>
         <LogoButton />
       </div>

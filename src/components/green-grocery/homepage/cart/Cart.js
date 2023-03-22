@@ -35,7 +35,7 @@ const Cart = () => {
 
   return (
     <>
-      <CartHeader className='navbar-brand btn btn-outline-primary d-flex p-sm-2 p-1' openModal={openModalHandler} />
+      <CartHeader openModal={openModalHandler} />
       <Modal
         show={showModal}
         onClose={closeModalHandler}

@@ -19,7 +19,7 @@ const WelcomeOnPage = () => {
 
   return (
     <div className='navbar-brand d-flex dropdown' role='button'>
-      <a className='dropdown-toggle' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
+      <a className='dropdown-toggle text-decoration-none' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
         <span>
           Welcome <span>{userNickname}</span> !
         </span>

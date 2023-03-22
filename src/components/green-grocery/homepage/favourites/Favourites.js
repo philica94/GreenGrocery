@@ -15,13 +15,15 @@ const Favourites = () => {
 
   const emptyFavourites = <h5 className='d-flex justify-content-center m-5'>You have no favourites yes</h5>;
 
-  const starIcon = favouriteListData.length === 0 ? <Star size={15} /> : <StarFill size={15} />;
+  const StarIcon = favouriteListData.length === 0 ? Star : StarFill;
 
   return (
     <>
       <div className='navbar-brand d-flex' onClick={openModalHandler} role='button'>
         <span>Favourites</span>
-        <span className='ms-2'>{starIcon}</span>
+        <span className='ms-2'>
+          <StarIcon size={15} className='mb-1' />
+        </span>
       </div>
       <Modal show={showModal} onClose={closeModalHandler} header={<h3>Favourites</h3>}>
         {favouriteList.length === 0 ? emptyFavourites : favouriteList}
