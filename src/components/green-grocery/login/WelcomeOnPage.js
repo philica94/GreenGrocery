@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
@@ -10,9 +10,11 @@ const WelcomeOnPage = () => {
   const userNickname = useSelector((state) => state.auth.loggedUserEmail.split('@').shift());
   const history = useHistory();
   const [showDropdown, setShowDropdown] = useState(false);
+  const dropdownRef = useRef(null);
 
   const goToOrdersPage = () => {
     history.push('/green-grocery/orders');
+    setShowDropdown(false);
   };
 
   const submitLogoutHandler = () => {
@@ -20,14 +22,27 @@ const WelcomeOnPage = () => {
     history.push('/green-grocery');
   };
 
+  useEffect(() => {
+    const onDocumentClick = (e) => {
+      if (!dropdownRef.current.contains(e.target)) {
+        setShowDropdown(false);
+      }
+    };
+
+    if (showDropdown) {
+      document.addEventListener('click', onDocumentClick);
+    }
+    return () => document.removeEventListener('click', onDocumentClick);
+  }, [showDropdown]);
+
   const toggleDropdown = () => {
-    setShowDropdown((prevState) => !prevState);
+    setShowDropdown((dropdownState) => !dropdownState);
   };
 
   const cssClassWelcomeDropdown = `dropdown-menu ${showDropdown ? 'show' : ''} ${classes.dropdownPosition}`;
 
   return (
-    <div className='navbar-brand d-flex dropdown' role='button'>
+    <div className='navbar-brand d-flex dropdown' role='button' ref={dropdownRef}>
       <a className='dropdown-toggle text-decoration-none' role='button' onClick={toggleDropdown}>
         <span>
           Welcome <span>{userNickname}</span> !
