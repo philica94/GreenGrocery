@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import { useModal } from '../../../hooks/useModal';
-import { cartActions, selectTotalCartItemsPrice } from '../../../store/slices/cart';
+import { cartActions, getCartItemsWithDetails, selectTotalCartItemsPrice } from '../../../store/slices/cart';
 import { ordersActions } from '../../../store/slices/orders';
 import { setHtmlElementFocus } from '../../../utilities/setHtmlElementFocus';
 import CartItem from '../homepage/cart/CartItem';
@@ -13,12 +13,14 @@ import { Check2Circle } from 'react-bootstrap-icons';
 const CartListSummary = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const cart = useSelector((state) => state.cart.items);
+  const cart = useSelector((state) => state.cart);
+
+  const filteredCartItems = getCartItemsWithDetails(cart);
   const userEmail = useSelector((state) => state.auth.loggedUserEmail);
-  const totalItemsPrice = useSelector(selectTotalCartItemsPrice).toFixed(2);
+  const totalItemsPrice = useSelector(selectTotalCartItemsPrice);
   const cartIsEmpty = useSelector((state) => state.cart.items.length === 0);
 
-  const cartList = cart.map((item) => <CartItem key={item.id} {...item} />);
+  const cartList = filteredCartItems.map((item) => <CartItem key={item.id} {...item} />);
 
   const userLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
@@ -34,7 +36,7 @@ const CartListSummary = () => {
   const order = () => {
     if (userLoggedIn) {
       openModalHandler();
-      dispatch(ordersActions.order({ cart, userEmail }));
+      dispatch(ordersActions.order({ filteredCartItems, userEmail }));
       dispatch(cartActions.removeEntireCart());
     } else {
       openModalHandler();

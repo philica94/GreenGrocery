@@ -8,9 +8,9 @@ export const ordersSlice = createSlice({
   name: 'orders',
   initialState: initialOrdersState,
   reducers: {
-    order(state, { payload: { cart, userEmail } }) {
+    order(state, { payload: { filteredCartItems, userEmail } }) {
       const orderDate = new Date().getTime();
-      state.orders.push({ userEmail, createdAt: orderDate, items: cart });
+      state.orders.push({ userEmail, createdAt: orderDate, items: filteredCartItems });
     },
   },
 });

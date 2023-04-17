@@ -4,21 +4,23 @@ import { useSelector } from 'react-redux';
 import Modal from '../../../UI/Modal';
 import CartHeader from './CartHeader';
 import CartProduct from './CartProduct';
-import { selectTotalCartItemsPrice } from '../../../../store/slices/cart';
+import { getCartItemsWithDetails, selectTotalCartItemsPrice } from '../../../../store/slices/cart';
 import { useModal } from '../../../../hooks/useModal';
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
+  const filteredCartItems = getCartItemsWithDetails(cart);
+
   const totalItemsPrice = useSelector(selectTotalCartItemsPrice);
   const history = useHistory();
   const { showModal, openModal: openModalHandler, closeModal: closeModalHandler } = useModal();
 
-  const cartList = cart.items.map((item) => <CartProduct key={item.id} {...item} />);
+  const cartList = filteredCartItems.map((item) => <CartProduct key={item.id} {...item} />);
   const emptyCartMessage = <h5 className='d-flex justify-content-center m-5'>Your cart is empty...</h5>;
 
   const additionalContent = (
     <div className='d-block'>
-      <h4>Total price: ${totalItemsPrice.toFixed(2)}</h4>
+      <h4>Total price: ${totalItemsPrice}</h4>
     </div>
   );
 
